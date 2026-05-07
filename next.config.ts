@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      new URL("https://framerusercontent.com/**"),
+      new URL("https://cdn.sanity.io/**"),
+    ],
+  },
 };
 
 export default nextConfig;

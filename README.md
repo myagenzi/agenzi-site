@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AgenzI — Creative Agency Website
 
-## Getting Started
+Full-stack agency website built with Next.js 16, Tailwind CSS v4, and Sanity CMS. Inspired by [Arpeggio](https://arpeggio.framer.website).
 
-First, run the development server:
+## Tech Stack
+
+| Layer      | Technology                              |
+|------------|-----------------------------------------|
+| Framework  | Next.js 16 (App Router)                 |
+| Styling    | Tailwind CSS v4                         |
+| Animation  | Framer Motion                           |
+| CMS        | Sanity v3 (embedded studio at /studio)  |
+| Email      | Resend                                  |
+| Forms      | React Hook Form + Zod                   |
+| Icons      | Lucide React                            |
+| Hosting    | Vercel                                  |
+
+## Local Setup
 
 ```bash
+# 1. Install dependencies
+npm install
+
+# 2. Copy env template and fill in your values
+cp .env.example .env.local
+
+# 3. Start dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).  
+Sanity Studio is available at [http://localhost:3000/studio](http://localhost:3000/studio).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable                         | Description                       |
+|----------------------------------|-----------------------------------|
+| `NEXT_PUBLIC_SANITY_PROJECT_ID`  | Sanity project ID                 |
+| `NEXT_PUBLIC_SANITY_DATASET`     | Sanity dataset (default: production) |
+| `NEXT_PUBLIC_SANITY_API_VERSION` | Sanity API version date           |
+| `SANITY_API_TOKEN`               | Sanity read/write token           |
+| `SANITY_REVALIDATE_SECRET`       | Secret for webhook revalidation   |
+| `RESEND_API_KEY`                 | Resend API key for email          |
+| `NEXT_PUBLIC_SITE_URL`           | Public site URL                   |
+| `NEXT_PUBLIC_POLAR_CHECKOUT_CORE`| Polar.sh checkout URL (Core plan) |
+| `NEXT_PUBLIC_POLAR_CHECKOUT_PRO` | Polar.sh checkout URL (Pro plan)  |
 
-## Learn More
+## Folder Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/              # Next.js App Router pages + API routes
+│   ├── (site)/       # Public-facing pages (route group)
+│   ├── api/          # Route handlers (contact, newsletter, revalidate)
+│   └── studio/       # Embedded Sanity Studio
+├── components/
+│   ├── layout/       # SideNav, TopNav, Footer
+│   ├── sections/     # Page section components
+│   ├── ui/           # Reusable UI primitives
+│   └── providers/    # Client-side context providers
+├── lib/              # Sanity client, queries, Resend, utils, constants
+├── sanity/schemas/   # Sanity document schemas
+├── hooks/            # Custom React hooks
+└── types/            # TypeScript type declarations
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy to Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# Install Vercel CLI
+npm i -g vercel
 
-## Deploy on Vercel
+# Deploy preview
+vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Deploy to production
+vercel --prod
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Make sure all environment variables are set in the Vercel project dashboard before deploying.

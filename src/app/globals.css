@@ -1,26 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Colors */
+  --color-black: #0a0a0a;
+  --color-white: #ffffff;
+  --color-cream: #f5f4f0;
+  --color-gray-100: #f0efeb;
+  --color-gray-200: #d6d4cc;
+  --color-gray-400: #9e9c94;
+  --color-gray-600: #5a5850;
+  --color-gray-800: #2a2926;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Fonts */
+  --font-sans: "Inter Display", "Inter", sans-serif;
+  --font-serif: "Playfair Display Variable", serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Ticker animation */
+  --animate-ticker: ticker 30s linear infinite;
+
+  @keyframes ticker {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 }
 
+/* Self-hosted Inter Display */
+@font-face {
+  font-family: "Inter Display";
+  src: url("https://framerusercontent.com/assets/WBmoOfE5V4Pk0KGflBKD1mR5fQ.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("https://framerusercontent.com/assets/jxcGxlXKmMYLe1IqJKbzXMfZpQ.woff2")
+    format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("https://framerusercontent.com/assets/J1D18mf6x7kZb2Yvs6wGDfCpXs.woff2")
+    format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("https://framerusercontent.com/assets/gMlDTc8xBXwBBnx4r5LN9xb5lY.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter Display";
+  src: url("https://framerusercontent.com/assets/cXnwGkpA4kbIcMc3n0FfGgp7m0.woff2")
+    format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Base resets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter Display", "Inter", sans-serif;
+  background-color: #ffffff;
+  color: #0a0a0a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f0efeb;
+}
+::-webkit-scrollbar-thumb {
+  background: #9e9c94;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5a5850;
+}
+
+/* Selection */
+::selection {
+  background-color: #0a0a0a;
+  color: #ffffff;
 }
